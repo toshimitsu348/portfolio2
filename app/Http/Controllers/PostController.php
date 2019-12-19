@@ -187,4 +187,20 @@ class PostController extends Controller
     {
         //
     }
+
+    /**
+     * 投稿一覧の取得(API用)
+     */
+    public function list(Request $request) {
+        $posts = Post::get();
+        $loginuser_id = Auth::id();
+        foreach ($posts as $post) {
+            $count = Favorite::where('post_id', $post->id)->count();
+            $post->count = $count;
+
+            $myfavorite = Favorite::where('post_id', $post->id)->where('user_id', $loginuser_id)->first();
+            $post->is_favorite = $myfavorite ? true : false;
+        }
+        return response()->json(['posts' => $posts, 'is_login' => Auth::check()]);
+    }
 }

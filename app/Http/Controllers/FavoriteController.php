@@ -57,9 +57,13 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        Favorite::create([
+            'user_id' => Auth::id(),
+            'post_id' => $request->post_id
+        ]);
+        return response()->json(['result' => true]);
     }
 
     /**
@@ -120,9 +124,8 @@ class FavoriteController extends Controller
      * @param  \App\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function delete($post_id){
-        Favorite::where('post_id', $post_id)->where('user_id', Auth::id())->delete();
-        
-        return redirect('/post/index');
+    public function delete(Request $request){
+        Favorite::where('post_id', $request->post_id)->where('user_id', Auth::id())->delete();
+        return response()->json(['result' => true]);
     }
 }
