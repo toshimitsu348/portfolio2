@@ -37,6 +37,10 @@ Route::post('/post/store', 'PostController@store');
 // ・get：パラメーターをURLに組み込む(付加する)
 // ・post：パラメーターをリクエストボディに組み込む(付加する)
 
+// API用
+Route::post('/post/list', 'PostController@list');
+Route::post('/post/favorite/create', 'FavoriteController@create');
+Route::post('/post/favorite/delete', 'FavoriteController@delete');
 
 
 
