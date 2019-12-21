@@ -42,8 +42,11 @@ Route::post('/post/list', 'PostController@list');
 Route::post('/post/favorite/create', 'FavoriteController@create');
 Route::post('/post/favorite/delete', 'FavoriteController@delete');
 
-
+Route::get('/sample', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PostController@index')->name('home');
+
+// React練習用
+Route::get('counter/', 'PostController@counter');

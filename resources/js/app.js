@@ -14,3 +14,4 @@ require("./bootstrap");
 
 require("./components/Example");
 require("./components/Post/List");
+require("./components/Practice/Counter");

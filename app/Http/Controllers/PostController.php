@@ -203,4 +203,11 @@ class PostController extends Controller
         }
         return response()->json(['posts' => $posts, 'is_login' => Auth::check()]);
     }
+
+    // React練習用
+    public function counter()
+    {
+        return view('practice.counter');
+    }
 }
+
